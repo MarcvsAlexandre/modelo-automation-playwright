@@ -1,0 +1,38 @@
+{
+  "name": "playwright-e2e",
+  "version": "1.0.0",
+  "description": "E2E tests using MS Playwright",
+  "main": "index.js",
+  "author": "ugioni",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.9.2",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "mkdirp": "^1.0.4",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.2.0",
+    "@playwright/test": "1.40.0",
+    "dotenv": "^16.3.1",
+    "playwright": "1.40.0",
+    "sicolo": "^1.0.1"
+  },
+  "scripts": {
+    "clean": "rimraf ./artifacts && mkdirp ./artifacts",
+    "format": "prettier --write \"**/**.[jt]s?(x)\"",
+    "verify": "prettier --check \"**/**.[jt]s?(x)\"",
+    "lint": "npx eslint \"**/**.[jt]s?(x)\"",
+    "test": "npx playwright test src/scenarios/CadastroDelivery.spec.ts --output artifacts/media --workers 1",
+    "show-report": "npx playwright show-report artifacts/report",
+    "ci": "npm run clean && npm run format && npm run verify && npm run lint && npm run test"
+  }
+}
